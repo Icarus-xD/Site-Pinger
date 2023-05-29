@@ -1,0 +1,27 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: site_pinger
+    container_name: in-house-ad-main
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    container_name: in-house-ad-cache
+
+  clickhouse:
+    image: yandex/clickhouse-server
+    restart: always
+    ports:
+      - 8123:8123
+      - 9000:9000
+    container_name: in-house-ad-stats
